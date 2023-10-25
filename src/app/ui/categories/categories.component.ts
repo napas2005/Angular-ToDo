@@ -8,18 +8,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./categories.component.css'],
 })
 export class CategoriesComponent implements OnInit {
-
   categories: Category[] = [];
-
+  selectedCategory!: Category;
+  
   constructor(private dataHandler: DataHandlerService) {}
 
   ngOnInit() {
     this.categories = this.dataHandler.getCategories();
-    console.log(this.categories);
     
   }
   
   showTasksByCategory(category: Category){
-    this.dataHandler.getTasksByCategory(category);
+    this.selectedCategory = category;
+    this.dataHandler.fillTasksByCategory(category);
   }
 }
